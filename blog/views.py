@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
+from .forms import BlogPostForm
 
 
 def post_list(request):
@@ -26,3 +27,8 @@ def post_detail(request, id):
     post.views += 1  # clock up the number of post views
     post.save()
     return render(request, "postdetail.html", {'post': post})
+
+
+def new_post(request):
+    form = BlogPostForm()
+    return render(request, 'blogpostform.html', {'form': form})

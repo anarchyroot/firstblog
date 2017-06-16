@@ -22,7 +22,8 @@
                     </p>
                     <p>{{ post.published_date }}</p>
                 </div>
-            </div>
+                {{ post.published_date }} | <strong>Views</strong> {{ post.views }} |
+                <strong>Tag</strong> {{ post.tag }}            </div>
         </div>
     {% endfor %}
 {% endblock %}

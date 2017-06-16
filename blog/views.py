@@ -10,8 +10,7 @@ def post_list(request):
     list of Posts that were published prior to'now'
     and render them to the 'blogposts.html' template
     """
-    posts = Post.objects.filter(published_date__lte=timezone.now()
-                                ).order_by('-published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, "blogposts.html", {'posts': posts})
 
 
@@ -24,4 +23,6 @@ def post_detail(request, id):
     post is not found
     """
     post = get_object_or_404(Post, pk=id)
+    post.views += 1  # clock up the number of post views
+    post.save()
     return render(request, "postdetail.html", {'post': post})
